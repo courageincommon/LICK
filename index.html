@@ -1,0 +1,606 @@
+                            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Long Island Canna Klub | Premium Cannabis Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #1a1a2e;
+            --bg-alt: #20203a;
+            --card: #2a2a45;
+            --card-hover: #32325a;
+            --border: #3d3d65;
+            --text: #f0f0f5;
+            --text-muted: #b0afc5;
+            --pink: #ff3daa;
+            --pink-glow: rgba(255,61,170,0.5);
+            --blue: #00e5ff;
+            --blue-glow: rgba(0,229,255,0.5);
+            --gradient: linear-gradient(135deg, #ff3daa 0%, #00e5ff 100%);
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+        nav { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; z-index: 100; transition: all 0.3s; }
+        nav.scrolled { background: rgba(26,26,46,0.95); backdrop-filter: blur(20px); padding: 1rem 5%; border-bottom: 1px solid var(--border); }
+        .logo { font-family: 'Orbitron', sans-serif; font-size: 1.4rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 0.75rem; }
+        .logo-icon { width: 42px; height: 42px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; box-shadow: 0 0 20px var(--pink-glow); }
+        .logo-text { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--text); }
+        .nav-btn { padding: 0.75rem 1.5rem; background: var(--gradient); color: #fff; border: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border-radius: 4px; box-shadow: 0 0 25px var(--pink-glow); }
+        .nav-btn:hover { box-shadow: 0 0 35px var(--pink-glow); transform: translateY(-2px); }
+        .menu-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+
+        /* HERO - BRIGHTER */
+        .hero { min-height: 100vh; position: relative; display: flex; align-items: center; overflow: hidden; }
+        .hero-bg { position: absolute; inset: 0; }
+        .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(26,26,46,0.6) 0%, rgba(255,61,170,0.15) 50%, rgba(26,26,46,0.5) 100%); }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; padding: 8rem 5% 4rem; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,61,170,0.2); border: 1px solid rgba(255,61,170,0.4); color: var(--pink); font-size: 0.7rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 2rem; border-radius: 4px; }
+        .hero h1 { font-family: 'Orbitron', sans-serif; font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; text-shadow: 0 2px 20px rgba(0,0,0,0.5); }
+        .hero h1 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero p { font-size: 1.15rem; color: var(--text); margin-bottom: 2.5rem; line-height: 1.7; max-width: 550px; text-shadow: 0 1px 10px rgba(0,0,0,0.5); }
+        .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn { padding: 1rem 2rem; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.5rem; border-radius: 4px; }
+        .btn-primary { background: var(--gradient); color: #fff; box-shadow: 0 0 30px var(--pink-glow); }
+        .btn-primary:hover { box-shadow: 0 0 50px var(--pink-glow); transform: translateY(-2px); }
+        .btn-outline { background: rgba(255,255,255,0.1); color: var(--text); border: 1px solid rgba(255,255,255,0.3); backdrop-filter: blur(5px); }
+        .btn-outline:hover { background: rgba(255,255,255,0.2); border-color: var(--blue); color: var(--blue); box-shadow: 0 0 20px var(--blue-glow); }
+
+        /* MARQUEE - BRIGHTER */
+        .marquee { padding: 1.25rem 0; background: var(--gradient); overflow: hidden; box-shadow: 0 5px 30px rgba(255,61,170,0.3); }
+        .marquee-content { display: flex; gap: 4rem; animation: marquee 25s linear infinite; white-space: nowrap; }
+        .marquee-item { font-family: 'Orbitron', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,1); display: flex; align-items: center; gap: 1rem; }
+        .marquee-item::before { content: '◆'; font-size: 0.5rem; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* TRUST BAR - BRIGHTER */
+        .trust-bar { display: grid; grid-template-columns: repeat(4,1fr); border-bottom: 1px solid var(--border); background: var(--bg-alt); }
+        .trust-item { padding: 2.5rem 2rem; text-align: center; border-right: 1px solid var(--border); transition: background 0.3s; }
+        .trust-item:last-child { border-right: none; }
+        .trust-item:hover { background: var(--card); }
+        .trust-item i { font-size: 1.75rem; margin-bottom: 1rem; display: block; }
+        .trust-item:nth-child(1) i, .trust-item:nth-child(3) i { color: var(--pink); text-shadow: 0 0 20px var(--pink-glow); }
+        .trust-item:nth-child(2) i, .trust-item:nth-child(4) i { color: var(--blue); text-shadow: 0 0 20px var(--blue-glow); }
+        .trust-item h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .trust-item p { font-size: 0.85rem; color: var(--text-muted); }
+
+        .section { padding: 8rem 5%; }
+        .section-alt { background: var(--bg-alt); }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-tag { font-family: 'Orbitron', sans-serif; font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem; font-weight: 600; }
+        .section-header h2 { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
+        .section-header p { color: var(--text-muted); max-width: 550px; margin: 0 auto; }
+
+        /* ABOUT - BRIGHTER */
+        .about-split { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+        .about-image { position: relative; }
+        .about-image img { width: 100%; border-radius: 8px; border: 2px solid var(--border); }
+        .about-image::before { content: ''; position: absolute; top: -15px; left: -15px; width: 100px; height: 100px; border-top: 3px solid var(--pink); border-left: 3px solid var(--pink); box-shadow: -8px -8px 25px var(--pink-glow); }
+        .about-image::after { content: ''; position: absolute; bottom: -15px; right: -15px; width: 100px; height: 100px; border-bottom: 3px solid var(--blue); border-right: 3px solid var(--blue); box-shadow: 8px 8px 25px var(--blue-glow); }
+        .about-content h2 { font-family: 'Orbitron', sans-serif; font-size: 2.25rem; font-weight: 700; line-height: 1.2; margin: 1rem 0 1.5rem; }
+        .about-content h2 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .about-content p { color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.8; }
+        .about-list { list-style: none; margin-bottom: 2rem; }
+        .about-list li { display: flex; align-items: center; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
+        .about-list li:nth-child(odd) i { color: var(--pink); text-shadow: 0 0 12px var(--pink-glow); }
+        .about-list li:nth-child(even) i { color: var(--blue); text-shadow: 0 0 12px var(--blue-glow); }
+        .badge-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
+        .info-badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; background: var(--card); border: 1px solid var(--border); border-radius: 4px; font-size: 0.85rem; transition: all 0.3s; }
+        .info-badge:hover { border-color: var(--pink); box-shadow: 0 0 15px var(--pink-glow); }
+        .info-badge:nth-child(2):hover { border-color: var(--blue); box-shadow: 0 0 15px var(--blue-glow); }
+        .info-badge:nth-child(1) i, .info-badge:nth-child(3) i { color: var(--pink); }
+        .info-badge:nth-child(2) i { color: var(--blue); }
+
+        /* PRODUCTS - BRIGHTER CARDS */
+        .products-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; }
+        .product-card { background: var(--card); border: 1px solid var(--border); overflow: hidden; transition: all 0.4s; border-radius: 8px; }
+        .product-card:hover { border-color: var(--pink); transform: translateY(-8px); box-shadow: 0 20px 50px rgba(255,61,170,0.2); }
+        .product-image { height: 220px; overflow: hidden; position: relative; }
+        .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .product-card:hover .product-image img { transform: scale(1.1); }
+        .product-badge { position: absolute; top: 1rem; left: 1rem; padding: 0.35rem 0.75rem; background: var(--gradient); color: #fff; font-size: 0.65rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; border-radius: 3px; box-shadow: 0 2px 10px var(--pink-glow); }
+        .product-badge.blue { background: var(--blue); color: var(--bg); box-shadow: 0 2px 10px var(--blue-glow); }
+        .product-body { padding: 1.5rem; }
+        .product-category { font-family: 'Orbitron', sans-serif; font-size: 0.65rem; color: var(--blue); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .product-name { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .product-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.6; }
+        .product-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border); }
+        .product-price { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; font-weight: 600; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .product-price span { font-family: 'Inter', sans-serif; font-size: 0.8rem; -webkit-text-fill-color: var(--text-muted); font-weight: 400; }
+
+        /* CATEGORIES - BRIGHTER */
+        .categories-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+        .category-card { position: relative; height: 350px; overflow: hidden; border-radius: 8px; cursor: pointer; border: 2px solid var(--border); transition: all 0.3s; }
+        .category-card:nth-child(1):hover, .category-card:nth-child(3):hover { border-color: var(--pink); box-shadow: 0 0 40px var(--pink-glow); }
+        .category-card:nth-child(2):hover { border-color: var(--blue); box-shadow: 0 0 40px var(--blue-glow); }
+        .category-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .category-card:hover img { transform: scale(1.1); }
+        .category-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,26,46,0.9) 0%, rgba(26,26,46,0.2) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem; }
+        .category-overlay h3 { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .category-overlay p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+        .category-link { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-decoration: none; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; transition: gap 0.3s; }
+        .category-link:hover { gap: 1rem; }
+
+        /* EVENTS - BRIGHTER */
+        .events-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+        .event-card { background: var(--card); border: 1px solid var(--border); overflow: hidden; border-radius: 8px; transition: all 0.3s; }
+        .event-card:nth-child(1):hover, .event-card:nth-child(3):hover { border-color: var(--pink); box-shadow: 0 10px 30px rgba(255,61,170,0.15); }
+        .event-card:nth-child(2):hover { border-color: var(--blue); box-shadow: 0 10px 30px rgba(0,229,255,0.15); }
+        .event-image { height: 200px; overflow: hidden; }
+        .event-image img { width: 100%; height: 100%; object-fit: cover; }
+        .event-body { padding: 1.5rem; }
+        .event-date { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.75rem; background: rgba(255,61,170,0.2); color: var(--pink); font-size: 0.75rem; font-weight: 600; border-radius: 3px; margin-bottom: 1rem; }
+        .event-card:nth-child(2) .event-date { background: rgba(0,229,255,0.2); color: var(--blue); }
+        .event-card h3 { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .event-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+
+        /* LiCK CODE - BRIGHTER */
+        .lick-code { background: var(--card); border: 2px solid var(--border); padding: 4rem; border-radius: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; overflow: hidden; }
+        .lick-code::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 30%, rgba(255,61,170,0.15) 0%, transparent 50%); }
+        .lick-code::after { content: ''; position: absolute; bottom: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 70% 70%, rgba(0,229,255,0.15) 0%, transparent 50%); }
+        .lick-code > * { position: relative; z-index: 1; }
+        .lick-code h2 { font-family: 'Orbitron', sans-serif; font-size: 2.25rem; font-weight: 700; margin-bottom: 1rem; }
+        .lick-code h2 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .lick-code p { color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem; }
+        .lick-perks { list-style: none; margin-bottom: 2rem; }
+        .lick-perks li { display: flex; align-items: center; gap: 1rem; padding: 0.75rem 0; color: var(--text); }
+        .lick-perks li:nth-child(odd) i { color: var(--pink); text-shadow: 0 0 12px var(--pink-glow); }
+        .lick-perks li:nth-child(even) i { color: var(--blue); text-shadow: 0 0 12px var(--blue-glow); }
+        .lick-form { background: var(--bg); border: 1px solid var(--border); padding: 2.5rem; border-radius: 8px; }
+        .lick-form h3 { font-family: 'Orbitron', sans-serif; font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .lick-form input { width: 100%; padding: 1rem; background: var(--card); border: 1px solid var(--border); color: var(--text); font-family: 'Inter', sans-serif; margin-bottom: 1rem; border-radius: 4px; }
+        .lick-form input:focus { outline: none; border-color: var(--pink); box-shadow: 0 0 15px var(--pink-glow); }
+        .lick-form button { width: 100%; padding: 1rem; background: var(--gradient); border: none; color: #fff; font-family: 'Orbitron', sans-serif; font-weight: 600; cursor: pointer; border-radius: 4px; box-shadow: 0 0 30px var(--pink-glow); font-size: 0.9rem; }
+        .lick-form button:hover { box-shadow: 0 0 50px var(--pink-glow); transform: translateY(-2px); }
+
+        /* TESTIMONIALS - BRIGHTER */
+        .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+        .testimonial { background: var(--card); border: 1px solid var(--border); padding: 2rem; border-radius: 8px; transition: all 0.3s; }
+        .testimonial:nth-child(1):hover, .testimonial:nth-child(3):hover { border-color: var(--pink); box-shadow: 0 10px 30px rgba(255,61,170,0.1); }
+        .testimonial:nth-child(2):hover { border-color: var(--blue); box-shadow: 0 10px 30px rgba(0,229,255,0.1); }
+        .testimonial-stars { margin-bottom: 1rem; font-size: 0.9rem; }
+        .testimonial:nth-child(1) .testimonial-stars, .testimonial:nth-child(3) .testimonial-stars { color: var(--pink); text-shadow: 0 0 12px var(--pink-glow); }
+        .testimonial:nth-child(2) .testimonial-stars { color: var(--blue); text-shadow: 0 0 12px var(--blue-glow); }
+        .testimonial p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem; font-style: italic; }
+        .testimonial-author { display: flex; align-items: center; gap: 1rem; }
+        .testimonial-avatar { width: 50px; height: 50px; border-radius: 50%; background: var(--gradient); display: flex; align-items: center; justify-content: center; font-weight: 600; color: #fff; box-shadow: 0 0 15px var(--pink-glow); }
+        .testimonial-name { font-size: 0.95rem; font-weight: 600; }
+        .testimonial-title { font-size: 0.8rem; color: var(--text-muted); }
+
+        /* CONTACT - BRIGHTER */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .contact-info h2 { font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
+        .contact-info > p { color: var(--text-muted); margin-bottom: 2rem; line-height: 1.8; }
+        .contact-details { list-style: none; margin-bottom: 2rem; }
+        .contact-details li { display: flex; align-items: center; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+        .contact-details i { width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 8px; }
+        .contact-details li:nth-child(1) i, .contact-details li:nth-child(3) i { background: rgba(255,61,170,0.2); color: var(--pink); box-shadow: 0 0 15px var(--pink-glow); }
+        .contact-details li:nth-child(2) i, .contact-details li:nth-child(4) i { background: rgba(0,229,255,0.2); color: var(--blue); box-shadow: 0 0 15px var(--blue-glow); }
+        .contact-details span { font-size: 0.8rem; color: var(--text-muted); display: block; }
+        .contact-details strong { font-size: 1rem; }
+        .contact-form { background: var(--card); border: 1px solid var(--border); padding: 2.5rem; border-radius: 8px; }
+        .contact-form h3 { font-family: 'Orbitron', sans-serif; font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group label { display: block; font-size: 0.8rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 1rem; background: var(--bg); border: 1px solid var(--border); color: var(--text); font-family: 'Inter', sans-serif; font-size: 0.9rem; border-radius: 4px; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--pink); box-shadow: 0 0 15px var(--pink-glow); }
+        .form-group textarea { height: 120px; resize: vertical; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .submit-btn { width: 100%; padding: 1rem; background: var(--gradient); border: none; color: #fff; font-family: 'Orbitron', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border-radius: 4px; box-shadow: 0 0 30px var(--pink-glow); }
+        .submit-btn:hover { box-shadow: 0 0 50px var(--pink-glow); transform: translateY(-2px); }
+
+        /* FOOTER - BRIGHTER */
+        footer { padding: 5rem 5% 2rem; background: var(--bg-alt); border-top: 1px solid var(--border); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+        .footer-brand .logo { margin-bottom: 1.5rem; }
+        .footer-brand p { color: var(--text-muted); font-size: 0.9rem; max-width: 300px; line-height: 1.7; }
+        .footer-social { display: flex; gap: 1rem; margin-top: 1.5rem; }
+        .footer-social a { width: 40px; height: 40px; background: var(--card); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--text-muted); text-decoration: none; border-radius: 4px; transition: all 0.3s; }
+        .footer-social a:hover { border-color: var(--pink); color: var(--pink); box-shadow: 0 0 20px var(--pink-glow); background: rgba(255,61,170,0.1); }
+        .footer-social a:nth-child(even):hover { border-color: var(--blue); color: var(--blue); box-shadow: 0 0 20px var(--blue-glow); background: rgba(0,229,255,0.1); }
+        .footer-col h4 { font-family: 'Orbitron', sans-serif; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text); margin-bottom: 1.5rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 0.75rem; }
+        .footer-col a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: all 0.3s; }
+        .footer-col a:hover { color: var(--pink); padding-left: 5px; }
+        .footer-col:nth-child(3) a:hover { color: var(--blue); }
+        .footer-bottom { padding-top: 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 0.8rem; flex-wrap: wrap; gap: 1rem; }
+        .footer-bottom a { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-decoration: none; font-weight: 500; }
+        .age-badge { padding: 0.5rem 1rem; background: var(--gradient); color: #fff; font-size: 0.75rem; font-weight: 600; border-radius: 4px; box-shadow: 0 0 20px var(--pink-glow); }
+
+        @media (max-width: 1024px) { .products-grid { grid-template-columns: repeat(2,1fr); } .categories-grid { grid-template-columns: repeat(2,1fr); } .about-split, .contact-grid { grid-template-columns: 1fr; gap: 3rem; } .lick-code { grid-template-columns: 1fr; padding: 3rem; } .footer-grid { grid-template-columns: repeat(2,1fr); } }
+        @media (max-width: 768px) { .nav-links { display: none; } .menu-toggle { display: block; } .hero h1 { font-size: 2.25rem; } .trust-bar { grid-template-columns: repeat(2,1fr); } .trust-item { border-bottom: 1px solid var(--border); } .products-grid, .categories-grid, .events-grid, .testimonials-grid { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; text-align: center; } }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <a href="#" class="logo">
+            <div class="logo-icon"><i class="fas fa-cannabis"></i></div>
+            <span class="logo-text">LiCK Klub</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#products">Shop</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="nav-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Join Now</button>
+        <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1536819114556-1e10f967fb61?w=1920&q=80" alt="Cannabis">
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge"><i class="fas fa-cannabis"></i> Long Island's Premier Cannabis Community</div>
+            <h1>Welcome to <span>Long Island Canna Klub</span></h1>
+            <p>Where "K" is for Knowledge. Premium cannabis products, education, and community. Discover the finest flower, edibles, and wellness products on Long Island.</p>
+            <div class="hero-btns">
+                <a href="#products" class="btn btn-primary"><i class="fas fa-shopping-bag"></i> Shop Products</a>
+                <a href="#about" class="btn btn-outline">Our Story</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="marquee">
+        <div class="marquee-content">
+            <span class="marquee-item">Premium Flower</span>
+            <span class="marquee-item">Edibles & Gummies</span>
+            <span class="marquee-item">Concentrates</span>
+            <span class="marquee-item">Vape Products</span>
+            <span class="marquee-item">Wellness & CBD</span>
+            <span class="marquee-item">Herbal Teas</span>
+            <span class="marquee-item">Accessories</span>
+            <span class="marquee-item">Education</span>
+            <span class="marquee-item">Premium Flower</span>
+            <span class="marquee-item">Edibles & Gummies</span>
+            <span class="marquee-item">Concentrates</span>
+            <span class="marquee-item">Vape Products</span>
+            <span class="marquee-item">Wellness & CBD</span>
+            <span class="marquee-item">Herbal Teas</span>
+            <span class="marquee-item">Accessories</span>
+            <span class="marquee-item">Education</span>
+        </div>
+    </div>
+
+    <div class="trust-bar">
+        <div class="trust-item"><i class="fas fa-leaf"></i><h3>Lab Tested</h3><p>Quality verified products</p></div>
+        <div class="trust-item"><i class="fas fa-graduation-cap"></i><h3>Education First</h3><p>Knowledge is our mission</p></div>
+        <div class="trust-item"><i class="fas fa-users"></i><h3>Community</h3><p>Join our growing family</p></div>
+        <div class="trust-item"><i class="fas fa-truck"></i><h3>Fast Delivery</h3><p>Same day on Long Island</p></div>
+    </div>
+
+    <section class="section" id="about">
+        <div class="about-split">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=800&q=80" alt="LiCK Klub">
+            </div>
+            <div class="about-content">
+                <p class="section-tag">Our Story</p>
+                <h2>Where <span>"K"</span> Is For Knowledge</h2>
+                <p>Long Island Canna Klub (LiCK) was founded with a simple mission: to educate, elevate, and empower our community through premium cannabis products and trusted guidance.</p>
+                <p>We believe that knowledge is the key to a positive cannabis experience. That's why we go beyond just selling products — we provide education, community events, and personalized consultations.</p>
+                <ul class="about-list">
+                    <li><i class="fas fa-check-circle"></i> Licensed and compliant with NY State regulations</li>
+                    <li><i class="fas fa-check-circle"></i> Lab-tested products for quality assurance</li>
+                    <li><i class="fas fa-check-circle"></i> Knowledgeable staff to guide your experience</li>
+                    <li><i class="fas fa-check-circle"></i> Community-first approach with regular events</li>
+                </ul>
+                <div class="badge-row">
+                    <div class="info-badge"><i class="fas fa-cannabis"></i> 21+ Only</div>
+                    <div class="info-badge"><i class="fas fa-certificate"></i> Licensed Dispensary</div>
+                    <div class="info-badge"><i class="fas fa-map-marker-alt"></i> Long Island, NY</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt" id="products">
+        <div class="section-header">
+            <p class="section-tag">Featured Products</p>
+            <h2>Shop Our Selection</h2>
+            <p>Premium cannabis products curated for quality and consistency</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1603909223429-69bb7101f420?w=600&q=80" alt="Flower">
+                    <span class="product-badge">New</span>
+                </div>
+                <div class="product-body">
+                    <p class="product-category">Flower</p>
+                    <h3 class="product-name">OG Kush</h3>
+                    <p class="product-desc">Classic strain with earthy, pine notes. Perfect for evening relaxation.</p>
+                    <div class="product-footer"><span class="product-price">$45 <span>/ eighth</span></span></div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=600&q=80" alt="Edibles">
+                    <span class="product-badge blue">Popular</span>
+                </div>
+                <div class="product-body">
+                    <p class="product-category">Edibles</p>
+                    <h3 class="product-name">LiCK Gummies</h3>
+                    <p class="product-desc">Delicious assorted flavors. 10mg per gummy, 100mg per pack.</p>
+                    <div class="product-footer"><span class="product-price">$35 <span>/ pack</span></span></div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&q=80" alt="Concentrates">
+                </div>
+                <div class="product-body">
+                    <p class="product-category">Concentrates</p>
+                    <h3 class="product-name">Live Resin</h3>
+                    <p class="product-desc">Full-spectrum extraction for maximum terpene profile and potency.</p>
+                    <div class="product-footer"><span class="product-price">$65 <span>/ gram</span></span></div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&q=80" alt="Tea">
+                    <span class="product-badge">Exclusive</span>
+                </div>
+                <div class="product-body">
+                    <p class="product-category">Wellness</p>
+                    <h3 class="product-name">Herban Legends Tea</h3>
+                    <p class="product-desc">Our signature herbal medicinal tea blend. Caffeine-free relaxation.</p>
+                    <div class="product-footer"><span class="product-price">$28 <span>/ tin</span></span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="categories">
+        <div class="section-header">
+            <p class="section-tag">Browse By Category</p>
+            <h2>Explore Our Collection</h2>
+            <p>Find exactly what you're looking for</p>
+        </div>
+        <div class="categories-grid">
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1536819114556-1e10f967fb61?w=800&q=80" alt="Flower">
+                <div class="category-overlay">
+                    <h3>Premium Flower</h3>
+                    <p>Hand-selected strains from top growers</p>
+                    <a href="#" class="category-link">Shop Flower <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=800&q=80" alt="Edibles">
+                <div class="category-overlay">
+                    <h3>Edibles & Gummies</h3>
+                    <p>Delicious infused treats and beverages</p>
+                    <a href="#" class="category-link">Shop Edibles <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&q=80" alt="Wellness">
+                <div class="category-overlay">
+                    <h3>Wellness & CBD</h3>
+                    <p>Therapeutic products for mind and body</p>
+                    <a href="#" class="category-link">Shop Wellness <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt" id="events">
+        <div class="section-header">
+            <p class="section-tag">Upcoming Events</p>
+            <h2>Join The Community</h2>
+            <p>Connect, learn, and celebrate with fellow enthusiasts</p>
+        </div>
+        <div class="events-grid">
+            <div class="event-card">
+                <div class="event-image"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80" alt="Workshop"></div>
+                <div class="event-body">
+                    <span class="event-date"><i class="fas fa-calendar"></i> July 20, 2024</span>
+                    <h3>Cannabis 101 Workshop</h3>
+                    <p>Learn the basics of cannabis consumption, strains, and responsible use.</p>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-image"><img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&q=80" alt="Tasting"></div>
+                <div class="event-body">
+                    <span class="event-date"><i class="fas fa-calendar"></i> August 3, 2024</span>
+                    <h3>Herban Legends Tea Tasting</h3>
+                    <p>Experience our new line of herbal medicinal teas and meet the creators.</p>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-image"><img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=800&q=80" alt="Community"></div>
+                <div class="event-body">
+                    <span class="event-date"><i class="fas fa-calendar"></i> August 17, 2024</span>
+                    <h3>LiCK Community Day</h3>
+                    <p>Annual celebration with exclusive deals, live music, and giveaways.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="lick-code">
+            <div>
+                <p class="section-tag">Membership</p>
+                <h2>Join The <span>LiCK Code</span></h2>
+                <p>Get exclusive access to member-only deals, early product releases, private events, and personalized consultations.</p>
+                <ul class="lick-perks">
+                    <li><i class="fas fa-check-circle"></i> 15% off all purchases</li>
+                    <li><i class="fas fa-check-circle"></i> Early access to new products</li>
+                    <li><i class="fas fa-check-circle"></i> Free entry to all events</li>
+                    <li><i class="fas fa-check-circle"></i> Monthly educational workshops</li>
+                    <li><i class="fas fa-check-circle"></i> Priority customer support</li>
+                </ul>
+            </div>
+            <div class="lick-form">
+                <h3>Sign Up Today</h3>
+                <input type="text" placeholder="Full Name">
+                <input type="email" placeholder="Email Address">
+                <input type="tel" placeholder="Phone Number">
+                <button type="button">Join The Klub</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt" id="testimonials">
+        <div class="section-header">
+            <p class="section-tag">Testimonials</p>
+            <h2>What Our Members Say</h2>
+            <p>Real experiences from the LiCK community</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial">
+                <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"The education I received at LiCK changed my entire perspective. The staff truly cares about helping you find the right products."</p>
+                <div class="testimonial-author"><div class="testimonial-avatar">MJ</div><div><p class="testimonial-name">Mike J.</p><p class="testimonial-title">Member since 2023</p></div></div>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"The Herban Legends tea is amazing! I love that LiCK focuses on wellness and not just recreation."</p>
+                <div class="testimonial-author"><div class="testimonial-avatar">SL</div><div><p class="testimonial-name">Sarah L.</p><p class="testimonial-title">LiCK Code Member</p></div></div>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"Best dispensary on Long Island! The community events are so much fun and the products are top quality."</p>
+                <div class="testimonial-author"><div class="testimonial-avatar">DK</div><div><p class="testimonial-name">David K.</p><p class="testimonial-title">Member since 2022</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contact">
+        <div class="section-header">
+            <p class="section-tag">Get In Touch</p>
+            <h2>Contact LiCK</h2>
+            <p>Have questions? We're here to help.</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h2>Visit or Reach Out</h2>
+                <p>Whether you have questions about products, membership, or events — we'd love to hear from you.</p>
+                <ul class="contact-details">
+                    <li><i class="fas fa-phone"></i><div><span>Phone</span><strong>(631) 555-LICK</strong></div></li>
+                    <li><i class="fas fa-envelope"></i><div><span>Email</span><strong>info@longislandcannaklub.org</strong></div></li>
+                    <li><i class="fas fa-map-marker-alt"></i><div><span>Location</span><strong>Long Island, New York</strong></div></li>
+                    <li><i class="fas fa-clock"></i><div><span>Hours</span><strong>Mon-Sat: 10AM-8PM | Sun: 12PM-6PM</strong></div></li>
+                </ul>
+            </div>
+            <form class="contact-form" id="contactForm">
+                <h3>Send Us a Message</h3>
+                <div class="form-row">
+                    <div class="form-group"><label>Name</label><input type="text" placeholder="Your name" required></div>
+                    <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com" required></div>
+                </div>
+                <div class="form-group">
+                    <label>Subject</label>
+                    <select required>
+                        <option value="">Select a topic...</option>
+                        <option value="products">Product Question</option>
+                        <option value="membership">LiCK Code Membership</option>
+                        <option value="events">Events</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>Message</label><textarea placeholder="How can we help?"></textarea></div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <div class="logo-icon"><i class="fas fa-cannabis"></i></div>
+                    <span class="logo-text">LiCK Klub</span>
+                </a>
+                <p>Long Island's premier cannabis community. Where knowledge meets quality. Premium products, education, and connection.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="#">Flower</a></li>
+                    <li><a href="#">Edibles</a></li>
+                    <li><a href="#">Concentrates</a></li>
+                    <li><a href="#">Vape</a></li>
+                    <li><a href="#">Wellness</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="#">The LiCK Code</a></li>
+                    <li><a href="#">Events</a></li>
+                    <li><a href="#">Education</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Delivery Info</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Long Island Canna Klub. All rights reserved.</p>
+            <div class="age-badge"><i class="fas fa-id-card"></i> 21+ Only</div>
+            <p>Disclaimer: Products contain THC. Use responsibly.</p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+        document.getElementById('menuToggle')?.addEventListener('click', () => {
+            const links = document.querySelector('.nav-links');
+            links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+            links.style.flexDirection = 'column';
+            links.style.position = 'absolute';
+            links.style.top = '100%';
+            links.style.left = '0';
+            links.style.width = '100%';
+            links.style.background = 'rgba(26,26,46,0.98)';
+            links.style.padding = '2rem';
+            links.style.gap = '1.5rem';
+            links.style.borderBottom = '1px solid var(--border)';
+            links.style.backdropFilter = 'blur(20px)';
+        });
+        document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const msg = document.createElement('div');
+            msg.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--card);border:2px solid var(--pink);padding:3rem;z-index:9999;text-align:center;max-width:400px;border-radius:12px;box-shadow:0 20px 60px rgba(255,61,170,0.3);';
+            msg.innerHTML = '<i class="fas fa-check-circle" style="font-size:3rem;color:var(--pink);margin-bottom:1rem;display:block;text-shadow:0 0 20px var(--pink-glow);"></i><h3 style="margin-bottom:0.5rem;">Message Sent!</h3><p style="color:var(--text-muted);margin-bottom:1.5rem;">We\'ll get back to you within 24 hours. Welcome to the Klub!</p><button onclick="this.parentElement.remove()" style="padding:0.75rem 2rem;background:var(--gradient);border:none;color:#fff;font-weight:600;cursor:pointer;border-radius:4px;box-shadow:0 0 20px var(--pink-glow);">Close</button>';
+            document.body.appendChild(msg);
+            this.reset();
+        });
+    </script>
+</body>
+</html>
